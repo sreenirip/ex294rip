@@ -1,5 +1,5 @@
 ---
-- hosts: dev
+- hosts: 192.168.78.10
   tasks:
           - name: update test
             copy:
