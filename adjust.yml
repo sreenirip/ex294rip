@@ -1,5 +1,6 @@
 ---
 - hosts: 192.168.78.10
+  become: yes
   tasks:
           - name: update test
             copy:
