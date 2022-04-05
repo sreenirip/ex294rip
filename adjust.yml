@@ -1,0 +1,21 @@
+---
+- hosts: dev
+  tasks:
+          - name: update test
+            copy:
+                    content: "tekneed-dev-directive\n"
+                    dest: /etc/fstab_file1
+
+- hosts: qua
+  tasks:
+          - name: update test
+            copy:
+                    content: "tekneed-qas-directive\n"
+                    dest: /etc/fstab_file1
+
+- hosts: sec
+  tasks:
+          - name: update test
+            copy:
+                    content: "tekneed-sec-directive\n"
+                    dest: /etc/fstab_file1
