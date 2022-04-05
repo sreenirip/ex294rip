@@ -1,5 +1,5 @@
 ---
-- hosts: mhost1.example.com
+- hosts: dev
   become: yes
   tasks:
           - name: update test
