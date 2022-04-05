@@ -5,6 +5,6 @@
           - name: update test
             copy:
                     content: "tekneed-dev-directive\n"
-                    dest: /tetc/fstab_file1
+                    dest: /etc/fstab_file1
 
 
