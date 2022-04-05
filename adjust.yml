@@ -1,5 +1,5 @@
 ---
-- hosts: 192.168.78.10
+- hosts: mhost1.example.com
   become: yes
   tasks:
           - name: update test
