@@ -16,7 +16,7 @@
                     name: "{{ item }}"
                     state: latest
             loop:
-                   "{{ web_pack }}"
+                   "{{ web_pack1 }}"
             when: ansible_distribution =='RedHat' and ansible_memtotal_mb > 152
 
           - name: start and enable web services
@@ -27,7 +27,7 @@
                       state: started
                       enabled: yes
               loop:
-                      "{{ web_pack1 }}"
+                      "{{ web_pack }}"
             when: ansible_distribution =='RedHat' and ansible_memtotal_mb > 152
 
             rescue:
