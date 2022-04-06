@@ -1,5 +1,5 @@
 ---
-- hosts: qua,dev
+- hosts: qua
   become: yes
   force_handlers: yes
   vars:
