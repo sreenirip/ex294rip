@@ -1,6 +1,5 @@
 ---
 - hosts: qua
-  become: yes
   tasks:
   - name: debug
     debug:
