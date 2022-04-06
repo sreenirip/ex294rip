@@ -6,5 +6,6 @@
           - name: update test
             copy:
                     content: "{{ name1 }}"
-                    dest: /etc/fstab_file1
+                    #dest: /etc/fstab_file1
+                    dest: /tmp/abc
 
