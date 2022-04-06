@@ -1,0 +1,59 @@
+---
+- hosts: prod
+  become: yes
+  force_handlers: yes
+  vars:
+          web_pack:
+                  - php
+                  - httpd
+                  - postgresql
+  tasks:
+          - name: install software
+            dnf:
+                    name: "{{ item }}"
+                    state: latest
+            loop:
+                   "{{ web_pack }}"
+            when: ansible_distribution =='RedHat' and ansible_memtotal_mb > 152
+
+          - name: start and enable web services
+            block:
+            - name: enable web services
+              service:
+                      name: "{{ item }}"
+                      state: started
+                      enabled: yes
+              loop:
+                      "{{ web_pack }}"
+            when: ansible_distribution =='RedHat' and ansible_memtotal_mb > 152
+
+            rescue:
+            - name: Display error message if any web service can not be started
+              debug:
+                      msg: "one of the services can't be started and enabled"
+
+          - name: Add firewall rule
+            firewalld:
+                     service: "{{ item }}"
+                     state: enabled
+                     permanent: yes
+                     immediate: yes
+            loop:
+                    - http
+                    - https
+
+          - name: Trun off EnsbaleSendfile option
+            replace:
+                     path: /etc/httpd/conf/httpd.conf
+                     regexp: "EnableSendfile on"
+                     replace: "EnableSendfile off"
+                     backup: yes
+            notify: restart_httpd 
+
+  handlers:
+  - name: restart_httpd
+    service:
+            name: httpd
+            state: restarted    
+
+            

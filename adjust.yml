@@ -1,10 +1,10 @@
 ---
 - hosts: dev
-  become: yes
+  vars:
+          name1: 'xyz'
   tasks:
           - name: update test
             copy:
-                    content: "tekneed-dev-directive\n"
+                    content: "{{ name1 }}"
                     dest: /etc/fstab_file1
-
 

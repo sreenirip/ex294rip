@@ -1,0 +1,18 @@
+[dev]
+mhost1.example.com
+
+[qua]
+mhost2.example.com
+
+[prod]
+mhost3.example.com
+mhost4.example.com
+
+[sec]
+mhost5.example.com
+
+[hpc_servers:children]
+sec
+[sri]
+localhost 
+  ansible_connection: local 

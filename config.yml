@@ -1,0 +1,17 @@
+---
+- hosts: prod
+  pre_tasks:
+  - name: begin web confi
+    debug:
+            msg: "Automating webserver configuration"
+  roles:
+          - team.apache
+  post_tasks:
+  - name: end web confi
+    copy:
+            content: "helllo world"
+            dest: /var/www/html/{{ansible_hostname}}
+
+  - name: display debug
+    debug:
+            msg: "Automating webserver configuration"

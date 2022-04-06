@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+        - name: ddd
+          template:
+                   src: hosts-info.j2
+                   dest: /etc/hosts2
+          when: inventory_hostname in groups['prod']

@@ -1,0 +1,19 @@
+---
+- hosts: dev
+  vars:
+        timesync_ntp_servers:
+        - hostname: 10.112.116.64 
+          iburst: yes
+        sri: 'America/Detroit'
+  roles:
+       - rhel-system-roles.timesync
+  post_tasks:
+  - name: chnage time
+    timezone: 
+        name: "{{ sri }}"
+    notify: restart crond
+  handlers:
+  - name: restart crond
+    service:
+            name: crond
+            state: restarted

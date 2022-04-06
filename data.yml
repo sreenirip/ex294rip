@@ -1,0 +1,50 @@
+---
+- hosts: all
+  tasks:
+          - name: mkdir
+            file:
+                     path: /data
+                     state: directory
+          - name: parted
+            parted:
+                    device:  /dev/sdb
+                    number: "1"
+                    part_end: 1500MiB
+                    state: present
+
+          - name: vg
+            lvg:
+                    vg: data-vg
+                    pvs: /dev/sdb1
+                    pesize: "28"
+
+          - name: lvol
+            lvol:
+                    vg: data-vg
+                    lv: data-lv
+                    size: 1000m
+            when: ansible_lvm['lvs']['data-lv'] is not defined
+
+          - name: filesystem
+            filesystem:
+                      fstype: ext4
+                      dev: /dev/data-vg/data-lv
+
+          - name: mount
+            mount:
+                   path: /data
+                   fstype: ext4
+                   src: /dev/data-vg/data-lv
+                   state: mounted
+          - name: vg
+            lvg:
+                    vg: data-vg
+                    pvs: /dev/sdb1,/dev/sdc 
+
+          - name: lvol
+            lvol:
+                    vg: data-vg
+                    lv: data-lv
+                    size: 2000m
+                    resizefs: yes
+

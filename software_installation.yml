@@ -1,0 +1,26 @@
+---
+- hosts: dev,qua
+  tasks:
+          - name: install software
+            dnf:
+                    name: "{{ item }}"
+                    state: latest
+            loop:
+                    - httpd
+                    - php
+                    - mariadb
+
+- hosts: prod
+  tasks:
+          - name: install software
+            dnf:
+                    name: '@Development tools'
+                    state: present
+
+- hosts: qua
+  tasks:
+          - name: install software
+            dnf:
+                    name: '*'
+                    state: latest
+

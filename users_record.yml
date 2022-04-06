@@ -1,0 +1,11 @@
+users:
+  - name: roland
+    job: sysadmin
+  - name: kess
+    job: web-designers
+  - name: messi
+    job: sysadmin
+  - name: leo
+    job: sysadmin
+  - name: tekneed
+    job: web-designers

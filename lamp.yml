@@ -1,0 +1,6 @@
+webpackages:
+        - httpd
+        - php
+mem_value: 152
+OS: RedHat
+

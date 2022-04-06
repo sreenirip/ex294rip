@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tasks:
+          - name: create vg
+            lvg:
+                    vg: swap-vg
+                    pvs: /dev/sdc
+
+          - name: create vg
+            lvol:
+                    vg: swap-vg
+                    lv: swap-lv
+                    size: 500m
+
+          - name: mkswap
+            command: "mkswap /dev/swap-vg/swap-lv"
+
+          - name: swapon
+            command: "swapon /dev/swap-vg/swap-lv"
+

@@ -1,0 +1,50 @@
+---
+- hosts: all
+  tasks:
+          #- name: created
+          #  lvg:
+          #          vg: tekneed-vg
+          #          pvs: /dev/sdb
+       - name: create big logi
+         block:
+         - name: lvol
+           lvol:
+                    vg: tekneed-vg
+                    lv: tekneed-lv
+                    size: 3000m
+
+         - name: filesystem 
+           filesystem:
+                fstype: xfs
+                dev: /dev/tekneed-vg/tekneed-lv
+
+         rescue:
+         - name: display error message
+           debug:
+                   msg: "Insufficient Volume group space"
+           when: 
+           - ansible_lvm['vgs']['tekneed-vg'] is defined 
+           - ansible_lvm['vgs']['tekneed-vg']['size_g'] <"3000m"
+
+       - name: lvol
+         block:
+         - name: lvol 
+           lvol:
+                    vg: tekneed-vg
+                    lv: tekneed-lv
+                    size: 2000m
+           when: 
+           - ansible_lvm['lvs']['tekneed-lv'] is not defined 
+
+         - name: filesystem 
+           filesystem:
+             fstype: xfs                                                                
+             dev: /dev/tekneed-vg/tekneed-lv
+           
+         rescue:
+         - name: display vg 
+           debug:
+                 msg: "Volume group does not"
+           when: 
+                   - ansible_lvm['vgs']['tekneed-vg'] is not defined 
+

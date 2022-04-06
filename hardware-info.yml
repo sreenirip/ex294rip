@@ -1,0 +1,39 @@
+---
+- hosts: all
+  tasks:
+          - name: copy
+            copy: 
+                  src: /tmp/hardware-info.empty
+                  dest: /root/hardware-info.txt
+
+          - name: update inventory_hostname
+            replace:
+                     path: /root/hardware-info.txt
+                     regexp: hostname
+                     replace: "{% if inventory_hostname is defined -%} {{ inventory_hostname }} {% else -%} NONE {% endif -%}"
+
+
+          - name: update total memory
+            replace:
+                     path: /root/hardware-info.txt
+                     regexp: memory
+                     replace: "{% if ansible_memtotal_mb is defined -%} {{ ansible_memtotal_mb|int }} {% else -%} NONE {% endif -%}"
+
+          - name: update bios
+            replace:
+                     path: /root/hardware-info.txt
+                     regexp: biosversion
+                     replace: "{% if ansible_bios_version is defined -%} {{ ansible_bios_version }} {% else -%} NONE {% endif -%}"
+
+          - name: update sda 
+            replace:
+                     path: /root/hardware-info.txt
+                     regexp: sdadisksize
+                     replace: "{% if ansible_devices['sda']['size'] is defined -%} {{ansible_devices['sda']['size']}} {% else -%} NONE {% endif -%}"
+
+          - name: update vdb 
+            replace:
+                     path: /root/hardware-info.txt
+                     regexp: vdbdisksize
+                     replace: "{% if ansible_devices['vdb']['size'] is defined -%} {{ansible_devices['vdb']['size']}} {% else -%} NONE {% endif -%}"
+

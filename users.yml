@@ -1,0 +1,38 @@
+---
+- hosts: all
+  vars_files:
+            - users_record.yml
+            - sensitive.yml
+  tasks:
+          - name: create groups
+            group:
+                    name: info-tech
+                    state: present
+            when: inventory_hostname in (groups['dev']+groups['qua']) 
+
+          - name: create groups
+            group:
+                    name: sysadmin
+                    state: present
+            when: inventory_hostname in (groups['sec']+groups['qua']) 
+
+          - name: create users
+            user:
+                    name: "{{ item.name }}"
+                    state: present
+                    groups: info-tech
+                    password: "{{web_pass|password_hash('sha512')}}" 
+            when: inventory_hostname in (groups['dev']+groups['qua']) and item.job =='web-designers' 
+            loop:
+                    "{{ users}}"
+
+          - name: create users
+            user:
+                    name: "{{ item.name }}"
+                    state: present
+                    groups: sysadmin
+                    password: "{{sys_pass|password_hash('sha512')}}" 
+            when: inventory_hostname in (groups['sec']+groups['qua']) and item.job =='sysadmin' 
+            loop:
+                    "{{ users}}"
+

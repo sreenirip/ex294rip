@@ -1,0 +1,36 @@
+---
+- hosts: mhost1.example.com
+  tasks:
+      - name: create dorup
+        group:
+                name: devops
+                state: present
+      - name: create user
+        user:
+             name: "{{ item }}"
+             state: present
+             groups: devops
+             append: yes
+        loop:
+             - harry
+             - john
+             - oyi
+
+      - name: add sudo
+        copy:
+             content: "%devops ALL=(ALL) NOPASSWD: ALL"
+             dest: /etc/sudoers.d/devops
+
+      - name: root ssh login
+        replace:
+            path: /etc/ssh/sshd_config
+            regexp: "PermitRootLogin yes" 
+            replace: "PermitRootLogin no"
+            backup: yes
+        notify: restart sshd
+
+  handlers:    
+      - name: restart sshd
+        service:
+                name: sshd
+                state: restarted

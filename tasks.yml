@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+          - name: crontab
+            cron:
+                    name: "datajob"
+                    user: root
+                    minute: "0"
+                    hour: "12"
+                    job: "data>/root/datafile"

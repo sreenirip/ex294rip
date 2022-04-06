@@ -1,0 +1,19 @@
+[dev]
+mhost1.example.com ssh_port=33
+ 
+
+[qua]
+mhost2.example.com
+
+[prod]
+mhost3.example.com
+mhost4.example.com
+
+[sec]
+mhost5.example.com
+
+[hpc_servers:children]
+sec
+[sri]
+127.0.0.1   
+ansible_connection=local

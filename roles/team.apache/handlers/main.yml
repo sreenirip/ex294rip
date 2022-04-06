@@ -1,0 +1,6 @@
+---
+# handlers file for team.apache
+- name: restart httpd
+  service:
+          name: "{{ web_var }}"
+          state: restarted
