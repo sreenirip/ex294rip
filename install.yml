@@ -7,6 +7,9 @@
                   - php
                   - httpd
                   - postgresql
+          web_pack1:
+                  - php
+                  - httpd
   tasks:
           - name: install software
             dnf:
@@ -24,7 +27,7 @@
                       state: started
                       enabled: yes
               loop:
-                      "{{ web_pack }}"
+                      "{{ web_pack1 }}"
             when: ansible_distribution =='RedHat' and ansible_memtotal_mb > 152
 
             rescue:
