@@ -1,5 +1,5 @@
 ---
-- hosts: dev
+- hosts: tomcat
   become: yes
   force_handlers: yes
   vars:
