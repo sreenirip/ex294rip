@@ -1,5 +1,5 @@
 ---
-- hosts: dev_inventory
+- hosts: dev
   become: yes
   force_handlers: yes
   vars:
