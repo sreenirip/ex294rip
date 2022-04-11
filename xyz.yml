@@ -4,8 +4,8 @@
   - name: debug
     debug:
       msg: "HI"
-    -- tags: sreeni
+    - tags: sreeni
   - name: debug1
     debug:
       msg: "HI Dude"
-    -- tags: sreeni1
+    - tags: sreeni1
