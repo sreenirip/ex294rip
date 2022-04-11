@@ -1,11 +1,10 @@
 ---
 - hosts: dev,prod
+  vars:
+         useri: weird
   tasks:
-  - name: debug
-    debug:
-      msg: "HI"
+  - name: user
+    user:
+      name: "{{ useri }}"
     tags: sreeni
-  - name: debug1
-    debug:
-      msg: "HI Dude"
-    tags: sreeni1
+  
