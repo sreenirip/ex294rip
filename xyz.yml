@@ -1,5 +1,5 @@
 ---
-- hosts: qua
+- hosts: dev,prod
   tasks:
   - name: debug
     debug:
