@@ -1,6 +1,5 @@
 ---
 - hosts: dev,prod
-  become: yes
   tasks:
   - name: debug
     debug:
