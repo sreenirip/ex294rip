@@ -5,7 +5,7 @@
     debug:
       msg: "HI"
     -- tags: sreeni
-- name: debug1
+  - name: debug1
     debug:
       msg: "HI Dude"
     -- tags: sreeni1
