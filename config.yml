@@ -1,5 +1,5 @@
 ---
-- hosts: prod
+- hosts: dev
   pre_tasks:
   - name: begin web confi
     debug:
