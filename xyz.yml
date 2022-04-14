@@ -1,6 +1,6 @@
 ---
 - hosts: dev
-  gather_facts: no
+  become: yes
   vars:
          useri: weird
   tasks:
