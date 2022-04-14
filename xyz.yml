@@ -7,7 +7,7 @@
   tasks:
   - name: user
     user:
-         name: "{{ useri}}"
+         name: "{{ item1 }}"
          state: present
     tags: sreeni
   
