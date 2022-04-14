@@ -1,5 +1,5 @@
 ---
-- hosts: dev,prod
+- hosts: dev
   vars:
          useri: weird
   tasks:
