@@ -5,7 +5,8 @@
          useri: weird
   tasks:
   - name: user
-    debug:
-      msg: "{{ useri }}"
+    user:
+         name: "{{ useri}}"
+         state: present
     tags: sreeni
   
