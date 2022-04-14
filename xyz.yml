@@ -4,7 +4,7 @@
          useri: weird
   tasks:
   - name: user
-    user:
-      name: "{{ useri }}"
+    debug:
+      msg: "{{ useri }}"
     tags: sreeni
   
