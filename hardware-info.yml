@@ -5,7 +5,7 @@
           - name: copy
             copy: 
                   src: /tmp/hardware-info.empty
-                 dest: /root/hardware-info.txt
+                  dest: /root/hardware-info.txt
 
           - name: update inventory_hostname
             replace:
