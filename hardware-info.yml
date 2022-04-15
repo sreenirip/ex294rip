@@ -2,10 +2,10 @@
 - hosts: dev
   become: yes
   tasks:
-          #- name: copy
-           # copy: 
-            #      src: /tmp/hardware-info.empty
-             #     dest: /root/hardware-info.txt
+          - name: copy
+            copy: 
+                  src: /tmp/hardware-info.empty
+                 dest: /root/hardware-info.txt
 
           - name: update inventory_hostname
             replace:
